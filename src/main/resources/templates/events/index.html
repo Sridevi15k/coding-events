@@ -6,14 +6,20 @@
 <header th:replace="fragments :: navigation"></header>
 
 <table class="table table-striped">
-    <thead>
+    <th:block>
+        <thead>
     <tr>
         <th>Name</th>
+        <th>Description</th>
+        <th>Address</th>
     </tr>
-    </thead>
+        </thead>
     <tr th:each="event : ${events}">
-        <td th:text="${event}"></td>
+        <td th:text="${event.key }"></td>
+        <td th:text="${event.value }"></td>
+        <td th:replace="fragments :: address"></td>
     </tr>
+    </th:block>
 </table>
 
 </body>
