@@ -1,8 +1,8 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size ;
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 public class Event {
@@ -15,22 +15,45 @@ public class Event {
         private String name;
 
         @NotBlank
-        @Size(max = 500, message = "Description too long!.")
+        @Size(max = 500, message = "Description too long!")
         private String description;
 
         @NotBlank
         @Email(message = "Invalid email. Try again.")
         private String contactEmail;
 
-        public Event(String name, String description, String contactEmail) {
+        @NotNull
+        @NotBlank(message = "Venue is required!")
+        private String venue;
+
+        @NotBlank
+        @AssertTrue(message = "Must Register for event.")
+        private boolean mustRegister;
+
+        @Positive(message = "Attendees must be 1 or more")
+        private int noOfAttendees;
+
+        @NotBlank(message = "Please mention ticket price.")
+        @PositiveOrZero(message = "Ticket price zero or higher")
+        private Float ticketPrice;
+
+        public Event(String name, String description, String contactEmail, String venue,
+                     boolean mustRegister, int noOfAttendees, Float ticketPrice) {
             this();
             this.name = name;
             this.description = description;
             this.contactEmail = contactEmail;
-            this.id = nextId;
-            nextId++;
+            this.venue = venue;
+            this.mustRegister = mustRegister;
+            this.noOfAttendees = noOfAttendees;
+            this.ticketPrice = ticketPrice;
+
         }
-    public Event() {}
+    public Event() {
+        this.id = nextId;
+        nextId++;
+    }
+
     public String getContactEmail() {
         return contactEmail;
     }
