@@ -1,4 +1,4 @@
-package org.launchcode.codingevents.data;
+/*package org.launchcode.codingevents.data;
 
 import org.launchcode.codingevents.models.Event;
 
@@ -27,5 +27,5 @@ public class EventData {
         public static void remove(int id){
             events.remove(id);
         }
-    }
+    }*/
 
