@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.persistence.ManyToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Tag extends AbstractEntity{
@@ -12,9 +14,13 @@ public class Tag extends AbstractEntity{
     @NotBlank
     private String name;
 
+    @ManyToMany(mappedBy = "tags")
+    private List<Event> evets = new ArrayList<>();
+
     public Tag(String name) {
         this.name = name;
     }
+
     public Tag(){}
 
     public String getName() {return name;}
