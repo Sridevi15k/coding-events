@@ -12,6 +12,7 @@ import java.util.Objects;
 @Entity
 public class Event extends AbstractEntity {
 
+
     @NotBlank(message = "Name is required.")
     @Size(min = 3, max = 50, message = "Name must be between 3 an 50 characters.")
     private String name;
